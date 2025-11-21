@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.class
+
+# Ambienti virtuali
+venv/
+env_py/
+
+# File temporanei e Log
+*.log
+.DS_Store
+
+# Network captures (ignoriamo i pcap temporanei, ma teniamo quelli in traces/)
+*.pcap
+*.cap
+!traces/*.pcap
+
+# Docker
+docker-compose.override.yml
